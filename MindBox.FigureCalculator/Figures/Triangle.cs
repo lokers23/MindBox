@@ -36,9 +36,14 @@ namespace MindBox.FigureCalculator.Implementations
 
         public bool IsRightTrianle()
         {
-            var isRightTriangleA = Math.Round(SideA.Legth * SideA.Legth, 2) == Math.Round((SideB.Legth * SideB.Legth + SideC.Legth * SideC.Legth), 2);
-            var isRightTriangleB = Math.Round(SideB.Legth * SideB.Legth, 2) == Math.Round((SideA.Legth * SideA.Legth + SideC.Legth * SideC.Legth), 2);
-            var isRightTriangleC = Math.Round(SideC.Legth * SideC.Legth, 2) == Math.Round((SideA.Legth * SideA.Legth + SideB.Legth * SideB.Legth), 2);
+            var accuracy = 0.00001;
+            var squareSideA = SideA.Legth * SideA.Legth;
+            var squareSideB = SideB.Legth * SideB.Legth;
+            var squareSideC = SideC.Legth * SideC.Legth;
+
+            var isRightTriangleA = Math.Abs((squareSideA - (squareSideB + squareSideC))) < accuracy;
+            var isRightTriangleB = Math.Abs((squareSideB - (squareSideA + squareSideC))) < accuracy;
+            var isRightTriangleC = Math.Abs((squareSideC - (squareSideA + squareSideB))) < accuracy;
 
             if (isRightTriangleA || isRightTriangleB || isRightTriangleC)
             {
